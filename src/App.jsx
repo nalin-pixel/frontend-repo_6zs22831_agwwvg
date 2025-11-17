@@ -1,26 +1,28 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import Hero from './components/Hero'
+import Gallery from './components/Gallery'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [adminMode, setAdminMode] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <Hero />
+
+      <div className="max-w-6xl mx-auto px-6 pt-6 pb-2 flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">User Dashboard</h2>
+          <p className="text-sm text-gray-600">Tap copy to watch an ad, then copy the prompt.</p>
         </div>
+        <label className="inline-flex items-center gap-2 text-sm text-gray-700">
+          <input type="checkbox" className="h-4 w-4" checked={adminMode} onChange={(e) => setAdminMode(e.target.checked)} />
+          Admin mode
+        </label>
       </div>
+
+      <Gallery adminMode={adminMode} />
+
+      <footer className="px-6 py-10 text-center text-xs text-gray-500">Built with love • Prompts & images for inspiration</footer>
     </div>
   )
 }
